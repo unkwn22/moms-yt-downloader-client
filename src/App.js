@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import Register from './components/Register';
+import Login from './components/Login';
+import Home from './components/Home';
+import Layout from './components/Layout';
+import Missing from './components/Missing';
+import Unauthorized from './components/Unauthorized';
+import { Routes, Route } from 'react-router-dom';
+import RequireAuth from './components/RequireAuth';
+
+const ROLES = {
+    "User": "user"
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+          <Route path="/" element={<Layout />}>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route path="unauthorized" element={<Unauthorized />} />
+
+              <Route element={<RequireAuth allowedRoles={[ROLES.User]}/>}>
+                <Route path="/" element={<Home />} />
+              </Route>
+
+              <Route path="*" element={<Missing />} />
+          </Route>
+      </Routes>
   );
 }
 
