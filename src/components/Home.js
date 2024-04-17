@@ -90,6 +90,7 @@ const Home = () => {
         setLoading(true);
         const controller = new AbortController();
         let s3Url = "";
+        console.log(originName)
         try {
             const response = await axios.get('/api/download', {
                 signal: controller.signal,
