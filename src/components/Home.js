@@ -74,14 +74,13 @@ const Home = () => {
         }
     }
 
-    function handleDownload(vidId, title){
-        setVidId(vidId);
-        setOriginName(title);
+    const handleDownload = async (e) => {
+        e.preventDefault();
 
         if(!auth.accessToken || auth.accessToken === "") {
-            navigate('/unauthorized', { state: { from: location }, replace: true });
+            await navigate('/unauthorized', { state: { from: location }, replace: true });
         } else {
-            download();
+            await download();
         }
     }
 
@@ -90,8 +89,7 @@ const Home = () => {
         setLoading(true);
         const controller = new AbortController();
         let s3Url = "";
-        console.log(originName);
-        console.log(vidId);
+        console.log(originName)
         try {
             const response = await axios.get('/api/download', {
                 signal: controller.signal,
@@ -150,8 +148,10 @@ const Home = () => {
                                     <img src={item.snippet.thumbnails.default.url} alt="Thumbnail" />
                                     <h3>{item.snippet.title}</h3>
                                 </div>
-                                <form onSubmit={handleDownload(item.id.videoId, item.snippet.title)}>
-                                    <button className={isLoading ? "disabled" : ""} onClick={() => setVidId(item.id.videoId) }>${item.snippet.title}</button>
+                                <form onSubmit={handleDownload}>
+                                <div>
+                                    <button className={isLoading ? "disabled" : ""} onClick={() => setVidId(item.id.videoId) && setOriginName(item.snippet.title) }>다운받기</button>
+                                </div>
                                 </form>
                             </li>
                         ))}
