@@ -90,7 +90,8 @@ const Home = () => {
         setLoading(true);
         const controller = new AbortController();
         let s3Url = "";
-        console.log(originName)
+        console.log(originName);
+        console.log(vidId);
         try {
             const response = await axios.get('/api/download', {
                 signal: controller.signal,
@@ -151,7 +152,7 @@ const Home = () => {
                                 </div>
                                 <form onSubmit={handleDownload}>
                                 <div>
-                                    <button className={isLoading ? "disabled" : ""} onClick={() => setVidId(item.id.videoId) && setOriginName(item.snippet.title) && setReqName("") }>다운받기</button>
+                                    <button className={isLoading ? "disabled" : ""} onClick={() => setVidId(item.id.videoId) && setOriginName(item.snippet.title) }>다운받기</button>
                                 </div>
                                 </form>
                             </li>
