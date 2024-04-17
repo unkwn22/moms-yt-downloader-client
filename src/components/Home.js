@@ -152,7 +152,7 @@ const Home = () => {
                                 <form onSubmit={handleDownload}>
                                 <div>
                                     <input value={item.snippet.title}/>
-                                    <button className={isLoading ? "disabled" : ""} onClick={() => setVidId(item.id.videoId) && setOriginName(item.snippet.title) }>다운받기</button>
+                                    <button className={isLoading ? "disabled" : ""} onClick={() => setOriginName(item.snippet.title) && setVidId(item.id.videoId) }>다운받기</button>
                                 </div>
                                 </form>
                             </li>
