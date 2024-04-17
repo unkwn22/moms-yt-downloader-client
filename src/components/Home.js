@@ -18,7 +18,6 @@ const Home = () => {
 
     const [vidId, setVidId] = useState("");
     const [originName, setOriginName] = useState("");
-    const [requestName, setReqName] = useState("");
 
     const [isLoading, setLoading] = useState(false);
 
@@ -152,6 +151,7 @@ const Home = () => {
                                 </div>
                                 <form onSubmit={handleDownload}>
                                 <div>
+                                    <input value={item.snippet.title}/>
                                     <button className={isLoading ? "disabled" : ""} onClick={() => setVidId(item.id.videoId) && setOriginName(item.snippet.title) }>다운받기</button>
                                 </div>
                                 </form>
