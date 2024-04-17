@@ -106,7 +106,7 @@ const Home = () => {
         } finally {
             setLoading(false);
             console.log(s3Url);
-            window.open(s3Url, "_blank", "noopener, noreferrer");
+            window.open(s3Url, "_blank");
         }
 
         return () => {
