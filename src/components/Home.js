@@ -74,13 +74,14 @@ const Home = () => {
         }
     }
 
-    const handleDownload = async (e) => {
-        e.preventDefault();
+    function handleDownload(vidId, title){
+        setVidId(vidId);
+        setOriginName(title);
 
         if(!auth.accessToken || auth.accessToken === "") {
-            await navigate('/unauthorized', { state: { from: location }, replace: true });
+            navigate('/unauthorized', { state: { from: location }, replace: true });
         } else {
-            await download();
+            download();
         }
     }
 
@@ -149,7 +150,7 @@ const Home = () => {
                                     <img src={item.snippet.thumbnails.default.url} alt="Thumbnail" />
                                     <h3>{item.snippet.title}</h3>
                                 </div>
-                                <form onSubmit={handleDownload}>
+                                <form onSubmit={handleDownload(item.id.videoId, item.snippet.title)}>
                                     <button className={isLoading ? "disabled" : ""} onClick={() => setVidId(item.id.videoId) }>${item.snippet.title}</button>
                                 </form>
                             </li>
