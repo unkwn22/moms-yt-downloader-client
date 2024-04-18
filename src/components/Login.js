@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth"
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import axios from "../api/axios";
-const LOGIN_URL = '/api/login';
+const LOGIN_URL = '/login';
 
 const Login = () => {
     const { setAuth } = useAuth();

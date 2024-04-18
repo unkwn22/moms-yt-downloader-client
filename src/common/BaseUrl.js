@@ -1,1 +1,1 @@
-export const BASE_URL = "https://52.79.47.249"
+export const BASE_URL = "https://shinsytdownload.xyz/api"

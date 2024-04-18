@@ -31,7 +31,7 @@ const Home = () => {
         setLoading(true);
         const controller = new AbortController();
         try {
-            const response = await axios.get('/api/search', {
+            const response = await axios.get('/search', {
                 signal: controller.signal,
                 params: {query: searchQuery, pageToken: usePageToken},
                 headers: {Authorization: "Bearer " + auth.accessToken},
@@ -94,7 +94,7 @@ const Home = () => {
         let s3Url = "";
         console.log(originName)
         try {
-            const response = await axios.get('/api/download', {
+            const response = await axios.get('/download', {
                 signal: controller.signal,
                 params: {videoId: vidId, originalTitle: originName},
                 headers: {Authorization: "Bearer " + auth.accessToken},
