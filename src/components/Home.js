@@ -21,6 +21,8 @@ const Home = () => {
 
     const [isLoading, setLoading] = useState(false);
 
+    const charsToRemove = ['[', ']', ' ', '+', '!', '&', '=', ':', ';', ',', '/', '?', '%', '#', '@', '"', "'", '<', '>', '{', '}', '|', '\\'];
+
     const logout = async () => {
         setAuth({});
         navigate("/login");
@@ -92,11 +94,14 @@ const Home = () => {
         setLoading(true);
         const controller = new AbortController();
         let s3Url = "";
-        console.log(originName)
+        let paramOriginName = originName
+        await charsToRemove.forEach(char => {
+            paramOriginName = paramOriginName.split(char).join('');
+        });
         try {
             const response = await axios.get('/download', {
                 signal: controller.signal,
-                params: {videoId: vidId, originalTitle: originName},
+                params: {videoId: vidId, originalTitle: paramOriginName},
                 headers: {Authorization: "Bearer " + auth.accessToken},
             })
             s3Url = response.data.data;
