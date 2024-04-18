@@ -118,6 +118,7 @@ const Register = () => {
                             aria-describedby="namenote"
                             onFocus={() => setNameFocus(true)}
                             onBlur={() => setNameFocus(false)}
+                            className={"input-box"}
                         />
 
                         {/****/}
@@ -139,6 +140,7 @@ const Register = () => {
                             aria-describedby="uidnote"
                             onFocus={() => setUserFocus(true)}
                             onBlur={() => setUserFocus(false)}
+                            className={"input-box"}
                         />
 
                         {/****/}
@@ -159,6 +161,7 @@ const Register = () => {
                             aria-describedby="pwdnote"
                             onFocus={() => setPwdFocus(true)}
                             onBlur={() => setPwdFocus(false)}
+                            className={"input-box"}
                         />
 
                         {/****/}
@@ -178,15 +181,16 @@ const Register = () => {
                             aria-describedby="confirmnote"
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
+                            className={"input-box"}
                         />
                         <br/>
-                        <button>Sign Up</button>
+                        <br />
+                        <button className={"button"}>회원가입</button>
                     </form>
-                    <p>
-                        이미 가입 하셨나요?<br />
+                    <p>이미 가입 하셨나요?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="/login">로그인</a>
+                            <a href="/login">로그인하기</a>
                         </span>
                     </p>
                 </section>

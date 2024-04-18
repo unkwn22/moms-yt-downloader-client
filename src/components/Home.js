@@ -28,6 +28,7 @@ const Home = () => {
 
     const search = async() => {
         let isMounted = true;
+        setLoading(true);
         const controller = new AbortController();
         try {
             const response = await axios.get('/api/search', {
@@ -43,6 +44,8 @@ const Home = () => {
             if (err.response?.status === 401) {
                 navigate('/unauthorized', {state: {from: location}, replace: true});
             }
+        } finally {
+            setLoading(false);
         }
 
         return () => {
@@ -134,25 +137,29 @@ const Home = () => {
                         autoComplete="off"
                         onChange={(e) => setSearchQuery(e.target.value)}
                         value={searchQuery}
+                        className={"input-box"}
                     />
-                    <button>검색</button>
+                    <button className={"button"}>검색</button>
                 </div>
             </form>
-            <article>
+            <article className={isLoading ? "disabled" : ""}>
                 <h2>검색 결과</h2>
                 {videos.data ? (
                     <div>
                         {videos.data.items.map((item, index) => (
                             <li key={index}>
-                                <div className={isLoading ? "disabled" : "video-container"} onClick={() => window.open(`https://youtube.com/watch?v=${item.id.videoId}`, '_blank')}>
-                                    <img src={item.snippet.thumbnails.default.url} alt="Thumbnail" />
-                                    <h3>{item.snippet.title}</h3>
+                                <div className={isLoading ? "disabled" : "video-container"}>
+                                    <div>
+                                        <img className={"image-container"} src={item.snippet.thumbnails.default.url} alt="Thumbnail" onClick={() => window.open(`https://youtube.com/watch?v=${item.id.videoId}`, '_blank')}/>
+                                        <h3>{item.snippet.title}</h3>
+                                    </div>
+                                    <br />
+                                    <form onSubmit={handleDownload}>
+                                        <div>
+                                            <button className={"download-button"} onClick={() => { setVidId(item.id.videoId); setOriginName(item.snippet.title); }}>다운받기</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <form onSubmit={handleDownload}>
-                                <div>
-                                    <button className={isLoading ? "disabled" : ""} onClick={() => { setVidId(item.id.videoId); setOriginName(item.snippet.title); }}>다운받기</button>
-                                </div>
-                                </form>
                             </li>
                         ))}
                     </div>
@@ -179,7 +186,7 @@ const Home = () => {
                                 videos.data.nextPageToken ? (
                                     <form onSubmit={handlePage}>
                                     <>
-                                    <button onClick={() => setUsePageToken(videos.data.nextPageToken)}>다음 페이지</button>
+                                    <button className={"page-button"} onClick={() => setUsePageToken(videos.data.nextPageToken)}>다음 페이지</button>
                                     </>
                                     </form>
                                 ) : (

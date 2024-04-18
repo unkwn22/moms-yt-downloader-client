@@ -1,17 +1,3 @@
-/*body {*/
-/*  margin: 0;*/
-/*  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
-/*    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',*/
-/*    sans-serif;*/
-/*  -webkit-font-smoothing: antialiased;*/
-/*  -moz-osx-font-smoothing: grayscale;*/
-/*}*/
-
-/*code {*/
-/*  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',*/
-/*    monospace;*/
-/*}*/
-
 body {
   text-align: center;
 }
@@ -29,12 +15,28 @@ body {
 }
 
 .video-container {
-  border: 1px solid #ccc;
+  border: 2px solid #000; /* Bold border */
   border-radius: 5px;
-  padding: 10px;
+  padding: 2px;
   margin: 0 auto 10px auto; /* Center-align with auto margins */
   width: 300px; /* Adjust the width as needed */
+  background-color: #f0f0f0; /* Light grey background */
   transition: background-color 0.3s; /* Smooth transition for background-color */
+}
+
+.image-container {
+  position: relative;
+  width: 90%;
+  padding-top: calc(100% / 20); /* 1:5 aspect ratio */
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container */
 }
 
 .video-container:hover {
@@ -53,6 +55,7 @@ li {
 .disabled {
   opacity: 0.4;
   pointer-events: none;
+  display:inline-block;
 }
 
 .spinner-overlay {
@@ -79,4 +82,28 @@ li {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.button {
+  padding: 10px 20px; /* Increase padding to increase button size */
+  font-size: 16px; /* Increase font size */
+}
+
+.download-button {
+  padding: 10px 40px; /* Increase padding to increase button size */
+  font-size: 18px; /* Increase font size slightly */
+  font-weight: bold; /* Make the text bold */
+  color: white; /* White text color */
+  background-color: red; /* Red background color */
+  border: 2px solid #000; /* Bold black border */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.input-box {
+  height: 40px; /* Increase the height as needed */
+}
+
+.page-button {
+  padding: 10px 20px; /* Increase padding to increase button size */
+  font-size: 16px; /* Increase font size */
 }

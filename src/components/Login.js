@@ -59,7 +59,9 @@ const Login = () => {
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                 <h1>로그인</h1>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="username">아이디:</label>
+                    <label htmlFor="username"></label>
+                    <b>아이디</b>
+                    <br /><br />
                     <input
                         type="text"
                         id="username"
@@ -68,18 +70,22 @@ const Login = () => {
                         onChange={(e) => setUser(e.target.value)}
                         value={user}
                         required
+                        className={"input-box"}
                     />
-
-                    <label htmlFor="password">비밀번호:</label>
+                    <br /><br />
+                    <label htmlFor="password"></label>
+                    <b>비밀번호</b>
+                    <br /><br />
                     <input
                         type="password"
                         id="password"
                         onChange={(e) => setPwd(e.target.value)}
                         value={pwd}
                         required
+                        className={"input-box"}
                     />
-                    <br/>
-                    <button>Sign In</button>
+                    <br/><br />
+                    <button className={"button"}>로그인</button>
                 </form>
                 <p>
                     <span className="line">
